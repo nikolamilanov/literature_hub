@@ -1,6 +1,7 @@
 var loginButton = document.querySelector('.login-button');
 var logoutButton = document.querySelector(".logout-button");
 var registerButton = document.querySelector(".register-button");
+var logo = document.getElementById("logo");
 
 if (loginButton != null) {
     loginButton.addEventListener("click", function () {
@@ -17,3 +18,7 @@ if (logoutButton != null) {
         window.location.href = "/literature_hub/back_end/logout-handler.inc.php";
     });
 }
+
+logo.addEventListener("click", function () {
+    window.location.href = "/literature_hub/front_end/markup/index.php";
+});

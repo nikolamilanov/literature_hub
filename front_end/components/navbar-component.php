@@ -5,20 +5,20 @@
             global $username;
             $username = $_SESSION['username'];
 
-            echo"<h3>Welcome, $username!</h3>";
+            echo"<h3 class='welcome-message'>Welcome, $username!</h3>";
             echo"<button class='logout-button'>Logout</button>";
         }      
     }
     else{
        function displayStatus(){
         echo"<button class='login-button'>Login</button>";
-        echo"<button class='register-button'>Signup</button>";
+        echo"<button class='register-button'>REGISTER NOW</button>";
        }
     }
 ?>
 <nav>
     <div class="logo-contaier">
-        <h1>Literature Hub</h1>
+        <h1 id="logo">Literature Hub</h1>
     </div>
     <div class="navigation-links"></div>
     <div class="user-status">
