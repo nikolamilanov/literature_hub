@@ -11,6 +11,17 @@
 
 <body>
     <?php require_once "../components/navbar-component.php" ?>
+
+    <form method="post" action="/literature_hub/back_end/display-data.php">
+        <label for="filter-type">Filter by:</label>
+        <select name="filter-type">
+            <option value="genre">Genre</option>
+            <option value="writer">Writer</option>
+        </select>
+
+        <input type="text" name="filter-value" placeholder="Search">
+        <input type="submit">
+    </form>
 </body>
 
 </html>
