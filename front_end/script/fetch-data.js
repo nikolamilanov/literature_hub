@@ -1,5 +1,5 @@
 function filterData(filterType, filterValue) {
-    var xmlhttp = new XMLHttpRequest();
+    const xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById("table-container").innerHTML = this.responseText;
@@ -9,11 +9,17 @@ function filterData(filterType, filterValue) {
     xmlhttp.send();
 };
 
-var filterForm = document.getElementById("filter");
+var filterForm = document.getElementById("filter-form");
 filterForm.addEventListener("submit", function (event) {
     event.preventDefault();
-    var ftype = document.getElementById("filter-type").value;
-    var fvalue = document.getElementById("filter-value").value;
+    let filterType = document.getElementById("filter-type").value;
+    let filterValue = document.getElementById("filter-value").value;
 
-    filterData(ftype, fvalue);
+    filterData(filterType, filterValue);
 });
+window.onload = function(){
+    let defaultFilterType = "creation";
+    let defaultFilterValue = "";
+
+    filterData(defaultFilterType, defaultFilterValue);
+};
