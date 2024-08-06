@@ -1,0 +1,71 @@
+.table-wrapper {
+    width: 50%;
+    margin: 50px auto 0 auto;
+}
+
+#filter-form {
+    width: 100%;
+}
+
+#filter-form input[type=text] {
+    margin: 0 0 5px 10px;
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 40%;
+    background: #f1f1f1;
+}
+
+#filter-form button {
+    float: left;
+    width: 7%;
+    padding: 10px;
+    background: #6d814e;;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+}
+.filter-wrapper{
+    font-size: 17px;
+    float: left;
+}
+
+.creations-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.creations-table thead tr {
+    background-color: #7ec119;
+    color: #e8f6d0;
+    text-align: left;
+    font-weight: bold;
+}
+
+.creations-table th,
+.creations-table td {
+    padding: 12px 15px;
+}
+
+.creations-table tbody tr {
+    border-bottom: 1px solid #afafaf;
+}
+
+.creations-table tbody tr:nth-of-type(even) {
+    background-color: #e1e1e1;
+}
+
+.creations-table tbody tr:last-of-type {
+    border-bottom: 2px solid #7ec119;
+}
+
+/*.creations-table tbody tr:hover {
+    background-color: #7ec119;
+    color: #e8f6d0;
+}*/
