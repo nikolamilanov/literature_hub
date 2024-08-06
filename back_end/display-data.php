@@ -4,12 +4,12 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     $filterValue = $_GET["fvalue"];
     try {
         require_once "database-handler.inc.php";
-    
+
         $sqlSelect = "SELECT creations.creation_name, creations.creation_genre,
              creations.creation_date, writers.writer_name
              FROM creations
              INNER JOIN writers ON creations.creation_writer = writers.writer_id ";
-    
+
         switch ($filterType) {
             case "genre":
                 if (!empty($filterValue)) {
@@ -17,6 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                 } else {
                     $sqlSelect .= "ORDER BY creation_genre;";
                 }
+                $headingOrder = array("Genre", "Creation", "Writer", "Date");
+                $dataOrder = array("creation_genre", "creation_name", "writer_name", "creation_date");
                 break;
             case "writer":
                 if (!empty($filterValue)) {
@@ -24,6 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                 } else {
                     $sqlSelect .= "ORDER BY writers.writer_name;";
                 }
+                $headingOrder = array("Writer", "Creation", "Genre", "Date");
+                $dataOrder = array("writer_name", "creation_name", "creation_genre", "creation_date");
                 break;
             case "creation":
                 if (!empty($filterValue)) {
@@ -31,39 +35,45 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                 } else {
                     $sqlSelect .= "ORDER BY creation_name;";
                 }
+                $headingOrder = array("Creation", "Genre", "Writer", "Date");
+                $dataOrder = array("creation_name", "creation_genre", "writer_name", "creation_date");
                 break;
         }
-    
+
         $stmt = $pdo->prepare($sqlSelect);
-    
+
         if (!empty($filterValue)) {
-            $filterValue = '%' . $filterValue .'%';
+            $filterValue = '%' . $filterValue . '%';
             $stmt->bindParam(":filterWord", $filterValue, PDO::PARAM_STR);
         }
-    
+
         $stmt->execute();
-    
+
         if ($stmt->rowCount() > 0) {
             $tableData = $stmt->fetchAll();
-        } else{
+        } else {
             $tableData = [];
         }
-    
-        //needs to be fetched using AJAX
-        echo "<table border='1'>";
-        echo "<tr><th>Creation</th><th>Genre</th><th>Date</th><th>Writer</th></tr>";
-    
+
+        echo "<table class='creations-table'>";
+
+        echo "<thead>";
+        echo "<tr><th>$headingOrder[0]</th><th>$headingOrder[1]</th><th>$headingOrder[2]</th><th>$headingOrder[3]</th></tr>";
+        echo "</thead>";
+
+        echo "<tbody>";
         foreach ($tableData as $row) {
             echo "<tr>";
-            echo "<td>" . htmlspecialchars($row['creation_name']) . "</td>";
-            echo "<td>" . htmlspecialchars($row['creation_genre']) . "</td>";
-            echo "<td>" . htmlspecialchars($row['creation_date']) . "</td>";
-            echo "<td>" . htmlspecialchars($row['writer_name']) . "</td>";
+            echo "<td>" . htmlspecialchars($row[$dataOrder[0]]) . "</td>";
+            echo "<td>" . htmlspecialchars($row[$dataOrder[1]]) . "</td>";
+            echo "<td>" . htmlspecialchars($row[$dataOrder[2]]) . "</td>";
+            echo "<td>" . htmlspecialchars($row[$dataOrder[3]]) . "</td>";
             echo "</tr>";
         }
-    
+        echo "</tbody>";
+
         echo "</table>";
-         
+
     } catch (PDOException $e) {
         echo "Query failed: " . htmlspecialchars($e->getMessage());
     }
