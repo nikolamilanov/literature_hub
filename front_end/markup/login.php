@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../style/login.css">
     <link rel="stylesheet" href="../style/navbar.css">
     <link rel="stylesheet" href="../style/reset.css">
-    <script src="../script/redirect.js" defer></script>
+    <script src="../script/navbar.js" defer></script>
 </head>
 
 <body>

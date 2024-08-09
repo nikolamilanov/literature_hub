@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../style/table.css">
     <link rel="stylesheet" href="../style/reset.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <script src="../script/redirect.js" defer></script>
+    <script src="../script/navbar.js" defer></script>
     <script src="../script/fetch-data.js" defer></script>
 </head>
 
