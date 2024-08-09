@@ -26,9 +26,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if(password_verify($password, $user['user_password'])){
-                $_SESSION['email'] = $user['user_email'];
-                $_SESSION['username'] = $user['user_name'];
-                $_SESSION['rolw'] = $user['user_role'];
+                $_SESSION['userId'] = $user['user_id'];
+                $_SESSION['userName'] = $user['user_name'];
+                $_SESSION['userRole'] = $user['user_role'];
+                $_SESSION['userEmail'] = $user['user_email'];
                 header("Location: ../front_end/markup/index.php");
                 die();
             }
