@@ -1,6 +1,12 @@
 <?php
 session_start();
-if (isset($_SESSION['userId'])) {
+if (!isset($_SESSION['userId'])) {
+    function displayStatus()
+    {
+        echo "<button class='login-button'>Login</button>";
+        echo "<button class='register-button'>REGISTER NOW</button>";
+    }
+} else {
     $userRole = $_SESSION['userRole'];
     switch ($userRole) {
         case "user":
@@ -18,14 +24,16 @@ if (isset($_SESSION['userId'])) {
                 . htmlspecialchars($_SESSION['userName']) . "!</h3>";
                 echo "<button class='logout-button'>Logout</button>";
 
-                echo "<div class='dropdown-wrapper'>";
-                echo "    <button class='dropdown-button'>Dropdown</button>";
-                echo "    <div id='dropdown' class='dropdown-content'>";
-                echo "        <a href='1'>Link 1</a>";
-                echo "        <a href='2'>Link 2</a>";
-                echo "        <a href='3'>Link 3</a>";
-                echo "    </div>";
-                echo "</div>" ;
+                echo <<<HTML
+                <div class="dropdown-wrapper">
+                    <button class="dropdown-button">Dropdown</button>
+                    <div id="dropdown" class="dropdown-content">
+                        <a href="1">Link 1</a>
+                        <a href="2">Link 2</a>
+                        <a href="3">Link 3</a>
+                    </div>
+                </div>
+                HTML;
             }
             break;
         case "admin":
@@ -35,22 +43,18 @@ if (isset($_SESSION['userId'])) {
                 . htmlspecialchars($_SESSION['userName']) . "!</h3>";
                 echo "<button class='logout-button'>Logout</button>";
 
-                echo "<div class='dropdown-wrapper'>";
-                echo "    <button class='dropdown-button'>Dropdown</button>";
-                echo "    <div id='dropdown' class='dropdown-content'>";
-                echo "        <a href='1'>Link 1</a>";
-                echo "        <a href='2'>Link 2</a>";
-                echo "        <a href='3'>Link 3</a>";
-                echo "    </div>";
-                echo "</div>" ;               
+                echo <<<HTML
+                <div class="dropdown-wrapper">
+                    <button class="dropdown-button">Dropdown</button>
+                    <div id="dropdown" class="dropdown-content">
+                        <a href="1">Link 1</a>
+                        <a href="2">Link 2</a>
+                        <a href="3">Link 3</a>
+                    </div>
+                </div>
+                HTML;
             }
             break;
-    }
-} else {
-    function displayStatus()
-    {
-        echo "<button class='login-button'>Login</button>";
-        echo "<button class='register-button'>REGISTER NOW</button>";
     }
 }
 ?>
