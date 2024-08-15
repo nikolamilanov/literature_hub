@@ -1,8 +1,8 @@
-var logo = document.getElementById("logo");
-var loginButton = document.querySelector('.login-button');
-var logoutButton = document.querySelector(".logout-button");
-var registerButton = document.querySelector(".register-button");
-var dropdownButton = document.querySelector(".dropdown-button");
+const logo = document.getElementById("logo");
+const loginButton = document.querySelector('.login-button');
+const logoutButton = document.querySelector(".logout-button");
+const registerButton = document.querySelector(".register-button");
+const dropdownButton = document.querySelector(".dropdown-button");
 
 logo.addEventListener("click", function () {
     window.location.href = "/literature_hub/front_end/markup/index.php";
@@ -22,17 +22,20 @@ if (logoutButton != null) {
         window.location.href = "/literature_hub/back_end/logout-handler.inc.php";
     });
 }
-if(dropdownButton != null){
+if (dropdownButton != null) {
     logoutButton.style.marginRight = 0;
-    dropdownButton.addEventListener("click", function(){
+    dropdownButton.addEventListener("click", function () {
         document.getElementById("dropdown").classList.toggle("display-dropdown");
     });
 }
-window.onclick = function(event) {
-    if (!event.target.matches('.dropdown-button')) {
-      var dropdown = document.getElementById("dropdown");
-        if (dropdown.classList.contains('display-dropdown')) {
-            dropdown.classList.remove('display-dropdown');
-        }  
+if (dropdownButton != null) {
+
+    window.onclick = function (event) {
+        if (!event.target.matches('.dropdown-button')) {
+            let dropdown = document.getElementById("dropdown");
+            if (dropdown.classList.contains('display-dropdown')) {
+                dropdown.classList.remove('display-dropdown');
+            }
+        }
     }
-  }
+}
