@@ -69,3 +69,13 @@
     background-color: #7ec119;
     color: #e8f6d0;
 }*/
+.form-wrapper{
+    position: relative;
+    display: inline-block; 
+}
+.form-content{
+    display: none;
+    position: absolute;
+    z-index: 1;
+}
+.display-form {display:block;}
