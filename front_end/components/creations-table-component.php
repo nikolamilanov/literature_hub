@@ -9,24 +9,38 @@ if (!isset($_SESSION['userId'])) {
     require_once "../../back_end/database-handler.inc.php";
 
     // Fetch writers data
-    $sqlSelect = "SELECT * FROM writers;";
-    $stmt = $pdo->prepare($sqlSelect);
+    $sqlSelectWriters = "SELECT * FROM writers;";
+    $stmt = $pdo->prepare($sqlSelectWriters);
     $stmt->execute();
 
     $writersData = $stmt->fetchAll();
 
-    // Prepare options for the select input
+    // Prepare options for the writer select input
     $writerOptions = '';
     foreach ($writersData as $value) {
         $writerOptions .= '<option value="' . $value['writer_id'] . '">'
             . $value['writer_name'] . '</option>';
     }
 
+    // Fetch creations data
+    $sqlSelectCreations = "SELECT * FROM creations;";
+    $stmt = $pdo->prepare($sqlSelectCreations);
+    $stmt->execute();
+
+    $creationsData = $stmt->fetchAll();
+
+    // Prepare options for the creation select input
+    $creationOptions = '';
+    foreach ($creationsData as $value) {
+        $creationOptions .= '<option value="' . $value['creation_id'] . '">'
+            . $value['creation_name'] . '</option>';
+    }
+
     $userRole = $_SESSION['userRole'];
     switch ($userRole) {
         //User role
         case "user":
-            function displayAction($writerOptions)
+            function displayAction($writerOptions, $creationOptions)
             {
                 //User create form
                 echo <<<HTML
@@ -34,7 +48,7 @@ if (!isset($_SESSION['userId'])) {
                     <button class="user-create-button">Add a new record</button>
                     <div id="user-create-form" class="form-content">
                         <form method="post" action="" class="user-create-form">
-                            <label for="creation">date</label><br>
+                            <label for="creation">creation</label><br>
                             <input type="text" name="creation"><br>
                     
                             <label for="genre">genre</label><br>
@@ -57,15 +71,15 @@ if (!isset($_SESSION['userId'])) {
             break;
         //Teacher role    
         case "teacher":
-            function displayAction($writerOptions)
+            function displayAction($writerOptions, $creationOptions)
             {
                 //Teacher create form
                 echo <<<HTML
                 <div class="form-wrapper">
                     <button class="admin-create-button">Add a new record</button>
                     <div id="admin-create-form" class="form-content">
-                        <form method="post" action="" class="admin-create-form">
-                            <label for="creation">date</label><br>
+                        <form method="post" action="/literature_hub/back_end/table_management/admin-create-form-handler.php" class="admin-create-form">
+                            <label for="creation">creation</label><br>
                             <input type="text" name="creation"><br>
                     
                             <label for="genre">genre</label><br>
@@ -90,8 +104,12 @@ if (!isset($_SESSION['userId'])) {
                 <div class="form-wrapper">
                     <button class="admin-update-button">Update a record</button>
                     <div id="admin-update-form" class="form-content">
-                        <form method="post" action="" class="admin-update-form">
-                            <label for="creation">date</label><br>
+                        <form method="post" action="/literature_hub/back_end/table_management/admin-update-form-handler.php" class="admin-update-form">
+                            <label for="creation-id">creation to update</label><br>
+                                <select name="creation-id">
+                                    $creationOptions
+                                </select><br>
+                            <label for="creation">creation</label><br>
                             <input type="text" name="creation"><br>
                     
                             <label for="genre">genre</label><br>
@@ -115,15 +133,15 @@ if (!isset($_SESSION['userId'])) {
             break;
         //Admin role
         case "admin":
-            function displayAction($writerOptions)
+            function displayAction($writerOptions, $creationOptions)
             {
                 //Admin create form
                 echo <<<HTML
                 <div class="form-wrapper">
                     <button class="admin-create-button">Add a new record</button>
                     <div id="admin-create-form" class="form-content">
-                        <form method="post" action="" class="admin-create-form">
-                            <label for="creation">date</label><br>
+                        <form method="post" action="/literature_hub/back_end/table_management/admin-create-form-handler.php" class="admin-create-form">
+                            <label for="creation">creation</label><br>
                             <input type="text" name="creation"><br>
                     
                             <label for="genre">genre</label><br>
@@ -148,8 +166,13 @@ if (!isset($_SESSION['userId'])) {
                 <div class="form-wrapper">
                     <button class="admin-update-button">Update a record</button>
                     <div id="admin-update-form" class="form-content">
-                        <form method="post" action="" class="admin-update-form">
-                            <label for="creation">date</label><br>
+                        <form method="post" action="/literature_hub/back_end/table_management/admin-update-form-handler.php" class="admin-update-form">
+                            <label for="creation-id">creation to update</label><br>
+                            <select name="creation-id">
+                                $creationOptions
+                            </select><br>
+                       
+                            <label for="creation">creation</label><br>
                             <input type="text" name="creation"><br>
                     
                             <label for="genre">genre</label><br>
@@ -168,26 +191,17 @@ if (!isset($_SESSION['userId'])) {
                     </div>
                 </div>
                 HTML;
-                
-                //Admin update form
+
+                //Admin delete form
                 echo <<<HTML
                 <div class="form-wrapper">
                     <button class="admin-delete-button">Delete a record</button>
                     <div id="admin-delete-form" class="form-content">
-                        <form method="post" action="" class="admin-delete-form">
-                            <label for="creation">date</label><br>
-                            <input type="text" name="creation"><br>
-                    
-                            <label for="genre">genre</label><br>
-                            <input type="text" name="genre"><br>
-                    
-                            <label for="writer">writer</label><br>
-                            <select name="writer">
-                                $writerOptions
+                        <form method="post" action="/literature_hub/back_end/table_management/admin-delete-form-handler.php" class="admin-delete-form">
+                            <label for="creation-id">creation to delete</label><br>
+                            <select name="creation-id">
+                                $creationOptions
                             </select><br>
-                    
-                            <label for="date">date</label><br>
-                            <input type="date" name="date">
 
                             <input type="submit">
                         </form>
@@ -196,8 +210,9 @@ if (!isset($_SESSION['userId'])) {
                 HTML;
             }
             break;
-            default:
-            function displayAction() {
+        default:
+            function displayAction()
+            {
                 echo "<p>Error: Invalid user role. Please contact the system administrator.</p>";
             }
             break;
@@ -225,7 +240,7 @@ if (!isset($_SESSION['userId'])) {
     <?php
     if (isset($_SESSION['userId'])) {
 
-        displayAction($writerOptions);
+        displayAction($writerOptions, $creationOptions);
     } else {
         displayAction();
     }
