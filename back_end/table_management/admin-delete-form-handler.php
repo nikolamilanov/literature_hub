@@ -1,4 +1,15 @@
 <?php
+session_start();
+
+if(!isset($_SESSION['userId'])){
+    header("Location: /literature_hub/front_end/markup/index.php");
+    die();
+}
+
+if($_SESSION['userRole'] != "admin"){
+    header("Location: /literature_hub/front_end/markup/index.php");
+    die();
+}
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     $creationId = $_POST["creation-id"];
@@ -13,6 +24,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $stmt->bindParam(":id", $creationId, PDO::PARAM_INT);
 
         $stmt->execute();
+
+        
+        //Insert the made change into logs
+        $sqlInsertLog = "INSERT INTO changeslogs(log_timestamp, changed_by, action_type)
+                         VALUES(NOW(), :user_id, 'delete')";
+        
+        $stmt2 = $pdo->prepare($sqlInsertLog);
+
+        $stmt2->bindParam(":user_id", $_SESSION['userId'], PDO::PARAM_INT);
+
+        $stmt2->execute();
 
         header("Location: /literature_hub/front_end/markup/index.php");
 
