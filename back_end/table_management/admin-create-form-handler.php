@@ -20,9 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     try {
         require_once "../database-handler.inc.php";
 
+        $pdo->beginTransaction();
+
+        // Insert a new record into the 'creations' table
         $sqlInsert = "INSERT INTO creations(creation_name, creation_genre, creation_writer, creation_date)
                       VALUES(:creation, :genre, :writer, :date);";
-
         $stmt = $pdo->prepare($sqlInsert);
 
         $stmt->bindParam(":creation", $creation, PDO::PARAM_STR);
@@ -32,24 +34,43 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         $stmt->execute();
 
-        
-        //Insert the made change into logs
-        $sqlInsertLog = "INSERT INTO changeslogs(log_timestamp, changed_by, action_type)
-        VALUES(NOW(), :user_id, 'create')";
+        // Get the last inserted creation_id for later use
+        $creationId = $pdo->lastInsertId();
 
+        // Insert a log entry into the 'changes_logs' table for the action
+        $sqlInsertLog = "INSERT INTO changes_logs(log_timestamp, changed_by, action_type)
+                         VALUES(NOW(), :user_id, 'create');";
         $stmt2 = $pdo->prepare($sqlInsertLog);
 
         $stmt2->bindParam(":user_id", $_SESSION['userId'], PDO::PARAM_INT);
 
         $stmt2->execute();
 
+        // Get the last inserted log_id for later use
+        $logId = $pdo->lastInsertId();
+
+        // Insert a relation entry into 'creations_changes_list' to link the log with the creation record
+        $sqlInsertLogRelation = "INSERT INTO creations_changes_list(record_id, log_id)
+                                 VALUES(:creation_id, :log_id);";
+        $stmt3 = $pdo->prepare($sqlInsertLogRelation);
+        
+        $stmt3->bindParam(":creation_id", $creationId, PDO::PARAM_INT);
+        $stmt3->bindParam(":log_id", $logId, PDO::PARAM_INT);
+
+        $stmt3->execute();
+
+        // Commit the transaction if everything executed correctly
+        $pdo->commit();
+
         header("Location: /literature_hub/front_end/markup/");
 
         die();
 
     } catch (PDOException $e) {
-        header("Location: /literature_hub/front_end/markup/index.php?error");
+        // Rollback the transaction in case of an error
+        $pdo->rollBack();
 
+        header("Location: /literature_hub/front_end/markup/index.php?error");
         die("Query failed" . $e->getMessage());
     }
 
