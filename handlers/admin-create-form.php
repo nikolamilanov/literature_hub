@@ -2,12 +2,12 @@
 session_start();
 
 if (!isset($_SESSION['userId'])) {
-    header("Location: /literature_hub/front_end/markup/index.php");
+    header("Location: ../markup/index.php");
     die();
 }
 
 if ($_SESSION['userRole'] != "admin" && $_SESSION['userRole'] != "teacher") {
-    header("Location: /literature_hub/front_end/markup/index.php");
+    header("Location: ../markup/index.php");
     die();
 }
 
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $date = $_POST["date"];
 
     try {
-        require_once "../database-handler.inc.php";
+        require_once "../config/database.php";
 
         $pdo->beginTransaction();
 
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         // Commit the transaction if everything executed correctly
         $pdo->commit();
 
-        header("Location: /literature_hub/front_end/markup/");
+        header("Location: ../markup/index.php");
 
         die();
 
@@ -70,10 +70,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         // Rollback the transaction in case of an error
         $pdo->rollBack();
 
-        header("Location: /literature_hub/front_end/markup/index.php?error");
+        header("Location: ../markup/index.php");
         die("Query failed" . $e->getMessage());
     }
 
 } else {
-    header("Location: /literature_hub/front_end/markup/index.php");
+    header("Location: ../markup/index.php");
 }

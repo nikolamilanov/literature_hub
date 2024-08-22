@@ -8,15 +8,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $confPassword = $_POST["conf-password"];
 
     if(empty($email) ||  empty($username) || empty($password) || empty($confPassword)) {
-        header("Location: ../front_end/markup/register.php?error=emptyfields");
+        header("Location: ../markup/register.php?error=emptyfields");
         die();
     }
     if($password != $confPassword){
-        header("Location: ../front_end/markup/register.php?error=passwordsmatch");
+        header("Location: ../markup/register.php?error=passwordsmatch");
         die();
     }
     try {
-        require_once "database-handler.inc.php";
+        require_once "../config/database.php";
 
         $sqlSelect = "SELECT * FROM users WHERE user_email = :email;";
 
@@ -39,11 +39,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt2->bindParam(":password", $hashPassword, PDO::PARAM_STR);
 
             $stmt2->execute();
-            header("Location: ../front_end/markup/login.php?info=createdaccount");
+            header("Location: ../markup/login.php?info=createdaccount");
             die();
         }
         else{
-            header("Location: ../front_end/markup/register.php?error=userexists");
+            header("Location: ../markup/register.php?error=userexists");
             die();
         }
     }
@@ -53,5 +53,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 }
 else{
-    header("Location: ../front_end/markup/register.php");
+    header("Location: ../markup/register.php");
 }

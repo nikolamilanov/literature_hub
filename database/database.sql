@@ -32,6 +32,7 @@ CREATE TABLE creations (
     creation_genre CHAR(20) NOT NULL,
     creation_writer INT NOT NULL,
     creation_date DATE NOT NULL,
+    is_deleted BOOLEAN NOT NULL
     FOREIGN KEY (creation_writer) REFERENCES writers(writer_id)
 );
 

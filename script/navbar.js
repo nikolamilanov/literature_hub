@@ -5,21 +5,21 @@ const registerButton = document.querySelector(".register-button");
 const dropdownButton = document.querySelector(".dropdown-button");
 
 logo.addEventListener("click", function () {
-    window.location.href = "/literature_hub/front_end/markup/index.php";
+    window.location.href = "/literature_hub/markup/index.php";
 });
 if (loginButton != null) {
     loginButton.addEventListener("click", function () {
-        window.location.href = "/literature_hub/front_end/markup/login.php";
+        window.location.href = "/literature_hub/markup/login.php";
     });
 }
 if (registerButton != null) {
     registerButton.addEventListener("click", function () {
-        window.location.href = "/literature_hub/front_end/markup/register.php";
+        window.location.href = "/literature_hub/markup/register.php";
     });
 }
 if (logoutButton != null) {
     logoutButton.addEventListener("click", function () {
-        window.location.href = "/literature_hub/back_end/logout-handler.inc.php";
+        window.location.href = "/literature_hub/handlers/logout.php";
     });
 }
 if (dropdownButton != null) {

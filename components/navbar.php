@@ -26,7 +26,7 @@ if (!isset($_SESSION['userId'])) {
 
                 echo <<<HTML
                 <div class="dropdown-wrapper">
-                    <button class="dropdown-button">Dropdown</button>
+                    <button class="dropdown-button">Admin</button>
                     <div id="dropdown" class="dropdown-content">
                         <a href="1">Link 1</a>
                         <a href="2">Link 2</a>
@@ -45,7 +45,7 @@ if (!isset($_SESSION['userId'])) {
 
                 echo <<<HTML
                 <div class="dropdown-wrapper">
-                    <button class="dropdown-button">Dropdown</button>
+                    <button class="dropdown-button">Admin</button>
                     <div id="dropdown" class="dropdown-content">
                         <a href="1">Link 1</a>
                         <a href="2">Link 2</a>

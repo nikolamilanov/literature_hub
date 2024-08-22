@@ -6,7 +6,7 @@ if (!isset($_SESSION['userId'])) {
         echo "<p>Please log in or register in order to contribute to the table!</p>";
     }
 } else {
-    require_once "../../back_end/database-handler.inc.php";
+    require_once "../config/database.php";
 
     // Fetch writers data
     $sqlSelectWriters = "SELECT * FROM writers;";
@@ -78,7 +78,7 @@ if (!isset($_SESSION['userId'])) {
                 <div class="form-wrapper">
                     <button class="admin-create-button">Add a new record</button>
                     <div id="admin-create-form" class="form-content">
-                        <form method="post" action="/literature_hub/back_end/table_management/admin-create-form-handler.php" class="admin-create-form">
+                        <form method="post" action="/literature_hub/handlers/admin-create-form.php" class="admin-create-form">
                             <label for="creation">creation</label><br>
                             <input type="text" name="creation"><br>
                     
@@ -104,7 +104,7 @@ if (!isset($_SESSION['userId'])) {
                 <div class="form-wrapper">
                     <button class="admin-update-button">Update a record</button>
                     <div id="admin-update-form" class="form-content">
-                        <form method="post" action="/literature_hub/back_end/table_management/admin-update-form-handler.php" class="admin-update-form">
+                        <form method="post" action="/literature_hub/handlers/admin-update-form.php" class="admin-update-form">
                             <label for="creation-id">creation to update</label><br>
                                 <select name="creation-id">
                                     $creationOptions
@@ -140,7 +140,7 @@ if (!isset($_SESSION['userId'])) {
                 <div class="form-wrapper">
                     <button class="admin-create-button">Add a new record</button>
                     <div id="admin-create-form" class="form-content">
-                        <form method="post" action="/literature_hub/back_end/table_management/admin-create-form-handler.php" class="admin-create-form">
+                        <form method="post" action="/literature_hub/handlers/admin-create-form.php" class="admin-create-form">
                             <label for="creation">creation</label><br>
                             <input type="text" name="creation"><br>
                     
@@ -166,7 +166,7 @@ if (!isset($_SESSION['userId'])) {
                 <div class="form-wrapper">
                     <button class="admin-update-button">Update a record</button>
                     <div id="admin-update-form" class="form-content">
-                        <form method="post" action="/literature_hub/back_end/table_management/admin-update-form-handler.php" class="admin-update-form">
+                        <form method="post" action="/literature_hub/handlers/admin-update-form.php" class="admin-update-form">
                             <label for="creation-id">creation to update</label><br>
                             <select name="creation-id">
                                 $creationOptions
@@ -197,7 +197,7 @@ if (!isset($_SESSION['userId'])) {
                 <div class="form-wrapper">
                     <button class="admin-delete-button">Delete a record</button>
                     <div id="admin-delete-form" class="form-content">
-                        <form method="post" action="/literature_hub/back_end/table_management/admin-delete-form-handler.php" class="admin-delete-form">
+                        <form method="post" action="/literature_hub/handlers/admin-delete-form.php" class="admin-delete-form">
                             <label for="creation-id">creation to delete</label><br>
                             <select name="creation-id">
                                 $creationOptions

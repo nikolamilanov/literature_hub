@@ -7,14 +7,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $password = $_POST["password"];
 
     if(empty($email) || empty($password)){
-        header("Location: ../front_end/markup/login.php?error=emptyfields");
+        header("Location: ../markup/login.php?error=emptyfields");
         die();
     }
     
     try{
-        require_once "database-handler.inc.php";
+        require_once "../config/database.php";
 
-        $sqlSelect = "SELECT * FROM Users WHERE user_email = :email;";
+        $sqlSelect = "SELECT * FROM users WHERE user_email = :email;";
 
         $stmt = $pdo->prepare($sqlSelect);
 
@@ -30,16 +30,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $_SESSION['userName'] = $user['user_name'];
                 $_SESSION['userRole'] = $user['user_role'];
                 $_SESSION['userEmail'] = $user['user_email'];
-                header("Location: ../front_end/markup/index.php");
+                header("Location: ../markup/index.php");
                 die();
             }
             else{
-                header("Location: ../front_end/markup/login.php?error=invalidlogin");
+                header("Location: ../markup/login.php?error=invalidlogin");
                 die();
             }
         }
         else{
-            header("Location: ../front_end/markup/login.php?error=invalidlogin");
+            header("Location: ../markup/login.php?error=invalidlogin");
             die();
         }
 
@@ -49,5 +49,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 }
 else{
-    header("Location: ../front_end/markup/login.php");
+    header("Location: ../markup/login.php");
 }

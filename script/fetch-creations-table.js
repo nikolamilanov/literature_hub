@@ -5,7 +5,7 @@ function filterData(filterType, filterValue) {
             document.getElementById("table-container").innerHTML = this.responseText;
         }
     };
-    xmlhttp.open("GET", "/literature_hub/back_end/display-data.php?ftype=" + filterType + "&fvalue=" + encodeURIComponent(filterValue), true);
+    xmlhttp.open("GET", "/literature_hub/handlers/fetch-creations-table.php?ftype=" + filterType + "&fvalue=" + encodeURIComponent(filterValue), true);
     xmlhttp.send();
 };
 

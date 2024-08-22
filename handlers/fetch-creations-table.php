@@ -3,7 +3,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     $filterType = $_GET["ftype"];
     $filterValue = $_GET["fvalue"];
     try {
-        require_once "database-handler.inc.php";
+        require_once "../config/database.php";
 
         $sqlSelect = "SELECT creations.creation_name, creations.creation_genre,
                              creations.creation_date, writers.writer_name
