@@ -6,34 +6,34 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
         require_once "database-handler.inc.php";
 
         $sqlSelect = "SELECT creations.creation_name, creations.creation_genre,
-             creations.creation_date, writers.writer_name
-             FROM creations
-             INNER JOIN writers ON creations.creation_writer = writers.writer_id ";
+                             creations.creation_date, writers.writer_name
+                      FROM creations
+                      INNER JOIN writers ON creations.creation_writer = writers.writer_id ";
 
         switch ($filterType) {
             case "genre":
                 if (!empty($filterValue)) {
-                    $sqlSelect .= "WHERE creation_genre LIKE :filterWord;";
+                    $sqlSelect .= "WHERE creation_genre LIKE :filterWord AND is_deleted = 0;";
                 } else {
-                    $sqlSelect .= "ORDER BY creation_genre;";
+                    $sqlSelect .= "WHERE is_deleted = 0 ORDER BY creation_genre;";
                 }
                 $headingOrder = array("Genre", "Creation", "Writer", "Date");
                 $dataOrder = array("creation_genre", "creation_name", "writer_name", "creation_date");
                 break;
             case "writer":
                 if (!empty($filterValue)) {
-                    $sqlSelect .= "WHERE writers.writer_name LIKE :filterWord;";
+                    $sqlSelect .= "WHERE writers.writer_name LIKE :filterWord AND is_deleted = 0;";
                 } else {
-                    $sqlSelect .= "ORDER BY writers.writer_name;";
+                    $sqlSelect .= "WHERE is_deleted = 0 ORDER BY writers.writer_name;";
                 }
                 $headingOrder = array("Writer", "Creation", "Genre", "Date");
                 $dataOrder = array("writer_name", "creation_name", "creation_genre", "creation_date");
                 break;
             case "creation":
                 if (!empty($filterValue)) {
-                    $sqlSelect .= "WHERE creation_name LIKE :filterWord;";
+                    $sqlSelect .= "WHERE creation_name LIKE :filterWord AND is_deleted = 0;";
                 } else {
-                    $sqlSelect .= "ORDER BY creation_name;";
+                    $sqlSelect .= "WHERE is_deleted = 0 ORDER BY creation_name;";
                 }
                 $headingOrder = array("Creation", "Genre", "Writer", "Date");
                 $dataOrder = array("creation_name", "creation_genre", "writer_name", "creation_date");

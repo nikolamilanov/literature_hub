@@ -14,14 +14,13 @@ if ($_SESSION['userRole'] != "admin") {
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $creationId = $_POST["creation-id"];
 
-    //issue with a foreign key constraint needs to be addressed
     try {
         require_once "../database-handler.inc.php";
 
         $pdo->beginTransaction();
 
-        // Delete a record from the 'creations' table
-        $sqlDelete = "DELETE FROM creations WHERE creation_id = :id;";
+        // Soft "delete" a record from the 'creations' table
+        $sqlDelete = "UPDATE creations SET is_deleted = 1 WHERE creation_id = :id;";
 
         $stmt = $pdo->prepare($sqlDelete);
 

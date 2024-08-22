@@ -23,7 +23,7 @@ if (!isset($_SESSION['userId'])) {
     }
 
     // Fetch creations data
-    $sqlSelectCreations = "SELECT * FROM creations;";
+    $sqlSelectCreations = "SELECT * FROM creations WHERE is_deleted = 0;";
     $stmt = $pdo->prepare($sqlSelectCreations);
     $stmt->execute();
 

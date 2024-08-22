@@ -23,8 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $pdo->beginTransaction();
 
         // Insert a new record into the 'creations' table
-        $sqlInsert = "INSERT INTO creations(creation_name, creation_genre, creation_writer, creation_date)
-                      VALUES(:creation, :genre, :writer, :date);";
+        $sqlInsert = "INSERT INTO creations(creation_name, creation_genre, creation_writer, creation_date, is_deleted)
+                      VALUES(:creation, :genre, :writer, :date, 0);";
         $stmt = $pdo->prepare($sqlInsert);
 
         $stmt->bindParam(":creation", $creation, PDO::PARAM_STR);
