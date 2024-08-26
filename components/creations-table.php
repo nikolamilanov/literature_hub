@@ -65,6 +65,7 @@ if (!isset($_SESSION['userId'])) {
                             <input type="submit">
                         </form>
                     </div>
+                    <p>User functionality is yet to be added, switch to teacher or admin!</p>
                 </div>
                 HTML;
             }

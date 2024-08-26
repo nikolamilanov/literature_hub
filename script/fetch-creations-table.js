@@ -22,4 +22,10 @@ window.onload = function(){
     let defaultFilterValue = "";
 
     filterData(defaultFilterType, defaultFilterValue);
+    if (!localStorage.getItem("alertShown")) {
+        setTimeout(function() {
+            alert('Login is required to use the website! \n\nThere are three available roles: user, teacher, and admin. \nPlease enter the name of the role as the credentials for testing. \n(e.g., the email and password for admin are both "admin").');
+            localStorage.setItem("alertShown", "true");
+        }, 2000);
+    }
 };
