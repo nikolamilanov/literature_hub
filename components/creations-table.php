@@ -47,7 +47,7 @@ if (!isset($_SESSION['userId'])) {
                 <div class="form-wrapper">
                     <button class="user-create-button">Add a new record</button>
                     <div id="user-create-form" class="form-content">
-                        <form method="post" action="" class="user-create-form">
+                        <form method="post" action="/literature_hub/handlers/user-request-form.php" class="user-create-form">
                             <label for="creation">creation</label><br>
                             <input type="text" name="creation"><br>
                     
@@ -60,7 +60,7 @@ if (!isset($_SESSION['userId'])) {
                             </select><br>
                     
                             <label for="date">date</label><br>
-                            <input type="date" name="date">
+                            <input type="date" name="date"><br>
 
                             <input type="submit">
                         </form>

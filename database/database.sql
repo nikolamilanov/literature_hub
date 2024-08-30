@@ -45,7 +45,11 @@ CREATE TABLE `changes_requests` (
   `request_id` int(11) NOT NULL,
   `requested_by` int(11) NOT NULL,
   `request_timestamp` datetime NOT NULL,
-  `request_status` enum('pending','approved','rejected') NOT NULL
+  `request_status` enum('pending','approved','rejected') NOT NULL,
+  `temp_creation` char(60) NOT NULL,
+  `temp_genre` char(20) NOT NULL,
+  `temp_writer` int(11) NOT NULL,
+  `temp_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
