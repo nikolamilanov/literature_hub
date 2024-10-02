@@ -28,7 +28,7 @@ if (!isset($_SESSION['userId'])) {
                 <div class="dropdown-wrapper">
                     <button class="dropdown-button">Admin</button>
                     <div id="dropdown" class="dropdown-content">
-                        <a href="1">Link 1</a>
+                        <a href="/literature_hub/admin/">Admin panel</a>
                         <a href="2">Link 2</a>
                         <a href="3">Link 3</a>
                     </div>
@@ -47,7 +47,7 @@ if (!isset($_SESSION['userId'])) {
                 <div class="dropdown-wrapper">
                     <button class="dropdown-button">Admin</button>
                     <div id="dropdown" class="dropdown-content">
-                        <a href="1">Link 1</a>
+                        <a href="/literature_hub/admin/">Admin panel</a>
                         <a href="2">Link 2</a>
                         <a href="3">Link 3</a>
                     </div>
