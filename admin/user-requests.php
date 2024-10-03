@@ -11,15 +11,10 @@
     <script src="../script/navbar.js" defer></script>
     <script src="../script/admin-aside-menu.js" defer></script>
 
-    <!--
-    <link rel="stylesheet" href="../style/table.css">
-    <script src="../script/fetch-creations-table.js" defer></script>
-    <script src="../script/forms.js" defer></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
--->
 </head>
 
 <body>
+    
     <?php require_once "../components/navbar.php" ?>
     <?php require_once "../components/admin-aside-menu.php" ?>
 

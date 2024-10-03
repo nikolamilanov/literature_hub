@@ -22,14 +22,30 @@ hr{
 }
 .navigation-container a{
     color: #e8f6d0;
+    width: max-content;
     margin: 30px 0 0 15%;
     padding: 10px 0 10px 10px;
     display: block;
     text-decoration: none;
     font-size: 13pt;
     font-weight: 700;
+    transition:  padding 0.3s;
 }
-.navigation-container a:hover, a:active{
+.navigation-container a:hover{
+    width: max-content;
+    margin-right: auto;
+    padding: 10px;
     background-color: white;
     color:#6d814e;
+}
+
+.idicate-active-page{
+    width: 85% !important;
+    background-color: white !important;
+    color:#6d814e !important;
+}
+.navigation-container a.idicate-active-page:hover {
+    width: 85%;
+    background-color: white;
+    color: #6d814e;
 }
