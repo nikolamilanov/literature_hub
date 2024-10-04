@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         header("Location: ../markup/index.php");
         die("Query failed" . $e->getMessage());
-    }
+    } 
 
 } else {
     header("Location: ../markup/index.php");

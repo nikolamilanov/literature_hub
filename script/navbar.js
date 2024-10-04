@@ -5,7 +5,7 @@ const registerButton = document.querySelector(".register-button");
 const dropdownButton = document.querySelector(".dropdown-button");
 
 logo.addEventListener("click", function () {
-    window.location.href = "/literature_hub/markup/index.php";
+    window.location.href = "/literature_hub/markup/";
 });
 if (loginButton != null) {
     loginButton.addEventListener("click", function () {

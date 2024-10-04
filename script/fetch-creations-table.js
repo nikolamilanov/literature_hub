@@ -9,7 +9,7 @@ function filterData(filterType, filterValue) {
     xmlhttp.send();
 };
 
-var filterForm = document.getElementById("filter-form");
+const filterForm = document.getElementById("filter-form");
 filterForm.addEventListener("submit", function (event) {
     event.preventDefault();
     let filterType = document.getElementById("filter-type").value;
