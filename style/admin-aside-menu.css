@@ -38,14 +38,13 @@ hr{
     background-color: white;
     color:#6d814e;
 }
-
-.idicate-active-page{
-    width: 85% !important;
-    background-color: white !important;
-    color:#6d814e !important;
-}
 .navigation-container a.idicate-active-page:hover {
     width: 85%;
     background-color: white;
     color: #6d814e;
+}
+.indicate-active-page{
+    width: 85% !important;
+    background-color: white !important;
+    color:#6d814e !important;
 }

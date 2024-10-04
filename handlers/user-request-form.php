@@ -27,7 +27,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $stmt->bindParam(':creation', $creation, PDO::PARAM_STR);
         $stmt->bindParam(':genre', $genre, PDO::PARAM_STR);
         $stmt->bindParam(':writer', $writer, PDO::PARAM_INT);
-        $stmt->bindParam(":date", $date, PDO::PARAM_INT);
+        $stmt->bindParam(":date", $date, PDO::PARAM_STR);
 
         $stmt->execute();
 
