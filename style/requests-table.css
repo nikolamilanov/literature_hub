@@ -1,0 +1,42 @@
+#table-container {
+    width: 40%;
+    margin: 50px auto 0 auto;
+}
+.requests-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); 
+}
+
+.requests-table thead tr {
+    background-color: #7ec119;
+    color: #e8f6d0;
+    text-align: left;
+    font-weight: bold;
+}
+
+.requests-table th,
+.requests-table td {
+    padding: 12px 15px;
+}
+
+.requests-table tbody tr {
+    border-bottom: 1px solid #afafaf;
+} 
+
+.requests-table tbody tr:nth-of-type(even) {
+    background-color: #e1e1e1;
+} 
+
+.requests-table tbody tr:last-of-type {
+    border-bottom: 2px solid #7ec119;
+}
+
+.action-buttons {
+    margin-right: 50px;
+    visibility: hidden;
+    float: right;
+}
+

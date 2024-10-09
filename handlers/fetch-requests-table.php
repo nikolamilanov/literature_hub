@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD'] != 'GET'){
         }
 
         echo'
-        <table border=1>
+        <table class="requests-table">
         <thead>
             <tr>
                 <th>User Name</th>
@@ -35,14 +35,16 @@ if($_SERVER['REQUEST_METHOD'] != 'GET'){
             <tr>
                 <td>' . htmlspecialchars($row['user_name']) . '</td>
                 <td>' . htmlspecialchars($row['request_status']) . '</td>
-                <td>' . htmlspecialchars($row['request_timestamp']) .'</td>
+                <td>' . htmlspecialchars($row['request_timestamp'])
+                      .'<div class="action-buttons"><button>button</button>
+                        <button>button</button></div>
+                </td>
             </tr>';
+            }
+            echo'
+            </tbody>
+            </table>';
+            
+        } catch (PDOException $e){
+            echo 'Query failed: ' . $e->getMessage();
         }
-        echo'
-        </tbody>
-        </table>';
-
-    } catch (PDOException $e){
-        echo 'Query failed: ' . $e->getMessage();
-    }
-

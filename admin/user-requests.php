@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="../style/reset.css">
     <link rel="stylesheet" href="../style/navbar.css">
     <link rel="stylesheet" href="../style/admin-aside-menu.css">
+    <link rel="stylesheet" href="../style/requests-table.css">
     <script src="../script/navbar.js" defer></script>
     <script src="../script/admin-aside-menu.js" defer></script>
-    <script src="../script/fetch-requests-table.js" defer></script>
+    <script src="../script/requests-table.js" defer></script>
 
 
 </head>
@@ -19,7 +20,9 @@
     
     <?php require_once "../components/navbar.php" ?>
     <?php require_once "../components/admin-aside-menu.php" ?>
-    <div id ="table-container"></div>
+    <main>
+        <div id ="table-container"></div>
+    </main>
 
 </body>
 
