@@ -2,12 +2,22 @@
 session_start();
 
 if($_SERVER['REQUEST_METHOD'] != 'POST'){
+    echo json_encode(['error' => 'Invalid request method']);
     die();
 }
+if (!isset($_SESSION['userId'])){
+    echo json_encode(['error' => 'Unauthorized access']);
+    die();
+}
+if ($_SESSION['userRole'] != 'admin' && $_SESSION['userRole'] != 'teacher') {
+    echo json_encode(['error' => 'Access denied']);
+    die();
+}
+
 $requestData = json_decode(file_get_contents('php://input'), true);
 if(!isset($requestData['id'], $requestData['action'])){
     echo json_encode(['error' => 'Invalid data']);
-    die;
+    die();
 }
 $id = $requestData['id'];
 $action = $requestData['action'];
